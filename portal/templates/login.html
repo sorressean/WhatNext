@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+{% load bootstrap5 %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+  <h1 class="page-header">Login</h1>
+  <form method="POST" class="form">
+    {% csrf_token %}
+{% bootstrap_form form %}
+    {{ login_form|crispy }}
+{% buttons %}
+    <button class="btn btn-primary" type="submit">Login</button>
+{% endbuttons %}
+  </form>
+{% endblock %}

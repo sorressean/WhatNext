@@ -1,0 +1,54 @@
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$('.confirm_delete').click(function(){
+    return confirm("Are you sure you want to delete?");
+})
+})
+</script>
+{% block scripting %}{% endblock %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %} | What Next</title>
+  </head>
+ <body id="page-top" class="text-center"t>
+{% if request.user.is_authenticated %}
+<nav id="navbar" class="navbar" aria-label="primary">
+<a class="nav-link"  href="{% url 'home' %}">Dashboard Home</a>
+<ul>
+<li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+</ul>
+</nav>
+{% endif %}
+<main id="main-section">
+<div class="container">
+{% if messages %}
+<h1>Info</h2>
+<ul class="messages">
+{% for message in messages %}
+<li>{{ message }} </li>
+{% endfor %}
+</ul>
+{% endif %}
+    {% block content %}
+    {% endblock %}
+</div>
+</main>
+<footer class="page-footer">
+  <div class="container-fluid text-center text-md-left">
+{% if user.is_authenticated %}
+<p>
+If you found a bug or have a suggestion, please let a community admin know!
+</p>
+{% endif %}
+</div>
+</footer>
+  </body>
+</html>
